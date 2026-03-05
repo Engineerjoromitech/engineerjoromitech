@@ -5,126 +5,185 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+:root{
+  --blue:#0b63ff;
+  --cyan:#00b3ff;
+  --dark:#111;
+  --card:#fff;
+  --bg1:#f7fbff;
+  --bg2:#f1f5f9;
+  --accent:#7c3aed;
+}
+
 body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#f4f4f4;
-text-align:center;
+  font-family: Arial, sans-serif;
+  margin:0;
+  text-align:center;
+
+  /* ✅ Nice colorful background (no external images needed) */
+  background:
+    radial-gradient(circle at 12% 8%, rgba(124,58,237,0.18), transparent 38%),
+    radial-gradient(circle at 88% 16%, rgba(11,99,255,0.18), transparent 40%),
+    radial-gradient(circle at 70% 85%, rgba(0,179,255,0.16), transparent 38%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
 }
 
 header{
-/* FIXED: reliable image (Wikimedia Commons) */
-background: url('https://commons.wikimedia.org/wiki/Special:FilePath/Phone%20Repair.jpg?width=1600') no-repeat center center;
-background-size: cover;
-color:white;
-padding:80px 20px;
-text-shadow:1px 1px 5px rgba(0,0,0,0.7);
+  position:relative;
+  color:white;
+  padding:78px 18px 64px;
+  text-shadow:1px 1px 5px rgba(0,0,0,0.22);
+  overflow:hidden;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
 }
 
-section{padding:40px 20px;}
+/* embedded hero overlay */
+header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:0.22;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%23000000"/><stop offset="1" stop-color="%23111111"/></linearGradient></defs><rect width="1600" height="900" fill="url(%23g)"/><g opacity="0.85"><circle cx="240" cy="220" r="120" fill="%23ffffff" opacity="0.06"/><circle cx="1380" cy="200" r="160" fill="%23ffffff" opacity="0.06"/><circle cx="1280" cy="720" r="220" fill="%23ffffff" opacity="0.06"/></g><g opacity="0.9"><rect x="640" y="130" width="380" height="640" rx="48" fill="%23000000"/><rect x="675" y="180" width="310" height="540" rx="32" fill="%23ffffff" opacity="0.12"/><rect x="685" y="200" width="290" height="500" rx="26" fill="%23ffffff" opacity="0.10"/></g><g opacity="0.9"><path d="M320 640 l120 -120 40 40 -120 120z" fill="%23ffffff" opacity="0.10"/><rect x="360" y="600" width="260" height="28" rx="14" fill="%23ffffff" opacity="0.10"/><circle cx="1240" cy="560" r="90" fill="%23ffffff" opacity="0.10"/><path d="M1188 560 l30 30 60 -80" stroke="%23ffffff" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.18"/></g></svg>');
+  background-size:cover;
+  background-position:center;
+  pointer-events:none;
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.25));
+  pointer-events:none;
+}
+
+header > *{ position:relative; z-index:1; }
+
+h1{margin:0 0 8px;}
+p{margin:0;}
+
+section{padding:40px 16px;}
+
+.hero-sub{
+  max-width:760px;
+  margin:12px auto 0;
+  font-size:16px;
+  opacity:0.95;
+  line-height:1.5;
+}
+
+.hero-welcome{
+  max-width:760px;
+  margin:14px auto 0;
+  background: rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:14px;
+  padding:14px 16px;
+  line-height:1.55;
+}
 
 .services{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-max-width:600px;
-margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  max-width:760px;
+  margin:auto;
 }
 
 .card{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  background:var(--card);
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
 .pricing-table{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-max-width:700px;
-margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  max-width:760px;
+  margin:auto;
 }
 
 .pricing-card{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-text-align:left;
+  background:var(--card);
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  text-align:left;
 }
 
 .review-section{
-max-width:700px;
-margin:auto;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
+  max-width:760px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
 
 .review-card{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-text-align:left;
+  background:var(--card);
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  text-align:left;
 }
 
 .btn{
-color:white;
-padding:15px 30px;
-border-radius:10px;
-text-decoration:none;
-display:inline-block;
-margin-top:10px;
-font-size:16px;
-border:none;
-cursor:pointer;
+  color:white;
+  padding:14px 22px;
+  border-radius:12px;
+  text-decoration:none;
+  display:inline-block;
+  margin-top:10px;
+  font-size:16px;
+  border:none;
+  cursor:pointer;
 }
 
 .whatsapp-btn{background:#25D366;}
 .momo-btn{background:#ff8c00;}
 .call-btn{background:#111;}
+.email-btn{background:#0077ff;}
 
 footer{
-background:#111;
-color:white;
-padding:20px;
-margin-top:40px;
+  background:#111;
+  color:white;
+  padding:18px;
+  margin-top:40px;
 }
 
-/* carousel */
+/* ✅ Carousel */
 .carousel-container{
-max-width:700px;
-margin:auto;
-overflow:hidden;
-position:relative;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-background:#fff;
+  max-width:760px;
+  margin:auto;
+  overflow:hidden;
+  position:relative;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  background:#fff;
 }
 
 .carousel-slide{
-display:flex;
-transition:transform 0.5s ease;
+  display:flex;
+  transition:transform 0.5s ease;
 }
 
 .carousel-slide img{
-width:100%;
-border-radius:10px;
-display:block;
+  width:100%;
+  display:block;
 }
 
 .prev,.next{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-background:rgba(0,0,0,0.5);
-color:white;
-border:none;
-padding:10px;
-border-radius:50%;
-cursor:pointer;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.55);
+  color:white;
+  border:none;
+  padding:10px 12px;
+  border-radius:50%;
+  cursor:pointer;
 }
 
 .prev{left:10px;}
@@ -132,100 +191,150 @@ cursor:pointer;
 
 /* Booking Form */
 .form-wrap{
-max-width:720px;
-margin:auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-text-align:left;
+  max-width:760px;
+  margin:auto;
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  text-align:left;
 }
 
 .form-row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
 label{
-display:block;
-font-size:14px;
-margin-top:12px;
-margin-bottom:6px;
+  display:block;
+  font-size:14px;
+  margin-top:12px;
+  margin-bottom:6px;
 }
 
 input, select, textarea{
-width:100%;
-padding:10px;
-border-radius:8px;
-border:1px solid #ddd;
-font-size:14px;
-box-sizing:border-box;
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  font-size:14px;
+  box-sizing:border-box;
 }
 
 textarea{min-height:90px; resize:vertical;}
 
 .form-actions{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:16px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:16px;
 }
 
 .form-note{font-size:12px;color:#555;margin-top:10px;}
 
-/* Hours */
+/* Working Hours */
 .hours{
-max-width:720px;
-margin: auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-text-align:left;
+  max-width:760px;
+  margin:auto;
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  text-align:left;
 }
-
 .hours table{
-width:100%;
-border-collapse:collapse;
-font-size:14px;
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
 }
 .hours td{
-padding:10px 6px;
-border-bottom:1px solid #eee;
+  padding:10px 6px;
+  border-bottom:1px solid #eee;
 }
 .hours td:last-child{text-align:right;}
 
-/* AI Chat */
+iframe{border-radius:12px;border:0;}
+
+/* ✅ AI Button on the side + chat panel */
+#aiFab{
+  position:fixed;
+  right:16px;
+  bottom:18px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  color:white;
+  font-size:24px;
+  box-shadow:0 10px 22px rgba(0,0,0,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
 #chatbox{
-position:fixed;
-bottom:20px;
-right:20px;
-background:white;
-padding:10px;
-border-radius:10px;
-width:260px;
-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  position:fixed;
+  right:16px;
+  bottom:86px;
+  background:white;
+  padding:10px;
+  border-radius:14px;
+  width:290px;
+  box-shadow:0 10px 22px rgba(0,0,0,0.25);
+  display:none; /* hidden until button is clicked */
+  z-index:9999;
+  text-align:left;
+}
+
+#chatHeader{
+  font-weight:700;
+  margin-bottom:8px;
 }
 
 #messages{
-height:150px;
-overflow:auto;
-font-size:14px;
-margin-bottom:10px;
+  height:170px;
+  overflow:auto;
+  font-size:14px;
+  margin-bottom:10px;
+  background:#f7f7ff;
+  border-radius:10px;
+  padding:8px;
 }
 
 #userInput{
-width:70%;
-padding:6px;
+  width:70%;
+  padding:8px;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+
+#sendBtn{
+  padding:8px 10px;
+  border-radius:10px;
+  border:none;
+  background:#111;
+  color:white;
+  cursor:pointer;
+}
+
+#closeChat{
+  float:right;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  font-size:16px;
 }
 
 /* Responsive */
-@media (max-width:768px){
-.services{grid-template-columns:1fr;}
-.review-section{grid-template-columns:1fr;}
-.pricing-table{grid-template-columns:1fr;}
-.form-row{grid-template-columns:1fr;}
+@media (max-width:820px){
+  .services{grid-template-columns:1fr;}
+  .review-section{grid-template-columns:1fr;}
+  .pricing-table{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -233,276 +342,327 @@ padding:6px;
 <body>
 
 <header>
-<h1>Engineer Joromi Tech</h1>
-<p>Professional Phone Repair & Accessories in Takoradi</p>
+  <h1>Engineer Joromi Tech</h1>
+  <p class="hero-sub">Phone Repair • Motherboard Sales & Repair • Accessories</p>
 
-<a class="btn call-btn" href="tel:+233505383846">📞 Call Now</a>
+  <!-- ✅ Welcome Message -->
+  <div class="hero-welcome">
+    <b>Welcome to Joromitechs 👋</b><br>
+    We fix damaged phones fast and professionally. Visit us at <b>Anaji Road, opposite Mobik Filling Station, Takoradi</b>.
+    <br>Call or WhatsApp us anytime for quick help.
+  </div>
+
+  <a class="btn call-btn" href="tel:+233505383846">📞 Call Now</a>
+  <a class="btn whatsapp-btn" href="https://wa.me/233505383846">💬 WhatsApp</a>
 </header>
 
 <section>
-<h2>Welcome</h2>
-<p>Fast and reliable phone repair services in Takoradi.</p>
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="card">📱 Screen Replacement</div>
+    <div class="card">🔋 Battery Replacement</div>
+    <div class="card">🔌 Charging Repair</div>
+    <div class="card">💧 Water Damage Repair</div>
+    <div class="card">💻 Motherboard Repair & Sales</div>
+    <div class="card">🎧 Phone Accessories</div>
+  </div>
 </section>
 
 <section>
-<h2>Our Services</h2>
-<div class="services">
-<div class="card">📱 Screen Replacement</div>
-<div class="card">🔋 Battery Replacement</div>
-<div class="card">🔌 Charging Repair</div>
-<div class="card">💧 Water Damage Repair</div>
-<div class="card">💻 Motherboard Repair & Sales</div>
-<div class="card">🎧 Phone Accessories</div>
-</div>
+  <h2>Our Pricing</h2>
+  <div class="pricing-table">
+    <div class="pricing-card">
+      <h3>Repairs</h3>
+      <p>Screen Replacement: <b>GHS 80 and above</b></p>
+      <p>Battery Replacement: <b>GHS 50 and above</b></p>
+      <p>Charging Repair: <b>GHS 20 and above</b></p>
+    </div>
+    <div class="pricing-card">
+      <h3>Accessories</h3>
+      <p>Covers, Chargers, Headphones: <b>GHS 10 and above</b></p>
+    </div>
+  </div>
 </section>
 
 <section>
-<h2>Our Pricing</h2>
-<div class="pricing-table">
-<div class="pricing-card">
-<h3>Repairs</h3>
-<p>Screen Replacement: GHS 80 and above</p>
-<p>Battery Replacement: GHS 50 and above</p>
-<p>Charging Repair: GHS 20 and above</p>
-</div>
-<div class="pricing-card">
-<h3>Accessories</h3>
-<p>Covers, Chargers, Headphones: GHS 10 and above</p>
-</div>
-</div>
+  <h2>Before & After Repairs</h2>
+
+  <div class="carousel-container">
+    <div class="carousel-slide" id="carousel-slide">
+
+      <!-- BEFORE: damaged phone (embedded) -->
+      <img alt="Before Repair (Damaged Phone)" src='data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="%23111"/><stop offset="1" stop-color="%23222"/>
+          </linearGradient>
+          <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="%230b63ff"/><stop offset="1" stop-color="%2300b3ff"/>
+          </linearGradient>
+        </defs>
+        <rect width="1400" height="800" fill="url(%23bg)"/>
+        <text x="60" y="110" font-size="64" fill="%23fff" font-family="Arial" font-weight="800">BEFORE</text>
+        <text x="60" y="165" font-size="28" fill="%23d7d7d7" font-family="Arial">Main Damage: Cracked Screen</text>
+
+        <rect x="520" y="140" rx="46" ry="46" width="360" height="620" fill="%23000"/>
+        <rect x="545" y="185" rx="30" ry="30" width="310" height="530" fill="url(%23screen)"/>
+
+        <path d="M565 240 L840 420" stroke="%23fff" stroke-width="7" opacity="0.95"/>
+        <path d="M740 190 L660 520" stroke="%23fff" stroke-width="7" opacity="0.85"/>
+        <path d="M585 520 L860 640" stroke="%23fff" stroke-width="7" opacity="0.82"/>
+        <path d="M700 360 L860 290" stroke="%23fff" stroke-width="7" opacity="0.75"/>
+
+        <circle cx="610" cy="290" r="6" fill="%23fff" opacity="0.9"/>
+        <circle cx="820" cy="460" r="6" fill="%23fff" opacity="0.9"/>
+        <circle cx="710" cy="560" r="6" fill="%23fff" opacity="0.9"/>
+
+        <rect x="75" y="640" rx="14" ry="14" width="520" height="80" fill="%23fff" opacity="0.08"/>
+        <text x="105" y="692" font-size="22" fill="%23fff" opacity="0.85" font-family="Arial">Issue: Touch not responding / glass broken</text>
+      </svg>' />
+
+      <!-- AFTER: fixed phone (embedded) -->
+      <img alt="After Repair (Fixed Phone)" src='data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800">
+        <defs>
+          <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="%230b63ff"/><stop offset="1" stop-color="%2300d2ff"/>
+          </linearGradient>
+        </defs>
+        <rect width="1400" height="800" fill="url(%23bg2)"/>
+        <text x="60" y="110" font-size="64" fill="%23fff" font-family="Arial" font-weight="800">AFTER</text>
+        <text x="60" y="165" font-size="28" fill="%23eaf7ff" font-family="Arial">Fixed: New Screen Installed & Working</text>
+
+        <rect x="520" y="140" rx="46" ry="46" width="360" height="620" fill="%23000"/>
+        <rect x="545" y="185" rx="30" ry="30" width="310" height="530" fill="%23ffffff"/>
+        <text x="610" y="455" font-size="56" fill="%230b63ff" font-family="Arial" font-weight="800">100% OK</text>
+        <text x="600" y="505" font-size="22" fill="%230b63ff" font-family="Arial">Touch / Display / Clarity</text>
+
+        <circle cx="1210" cy="210" r="86" fill="%2300c853" opacity="0.95"/>
+        <path d="M1168 210 L1197 239 L1253 178" stroke="%23fff" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>' />
+
+    </div>
+
+    <button class="prev" onclick="prevSlide()">❮</button>
+    <button class="next" onclick="nextSlide()">❯</button>
+  </div>
 </section>
 
 <section>
-<h2>Before & After Repairs</h2>
-
-<div class="carousel-container">
-<div class="carousel-slide" id="carousel-slide">
-<!-- FIXED: reliable Wikimedia Commons images -->
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Smartphone%20cracked%20screen.jpg?width=1400" alt="Before Repair (Cracked Screen)">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Phone%20Repair.jpg?width=1400" alt="After Repair (Phone Repair)">
-</div>
-
-<button class="prev" onclick="prevSlide()">❮</button>
-<button class="next" onclick="nextSlide()">❯</button>
-</div>
-
-<p style="max-width:700px;margin:12px auto 0;color:#555;font-size:12px;">
-Note: These are sample images for now. When your upload limit resets, we’ll replace them with your real before/after photos.
-</p>
+  <h2>Working Hours</h2>
+  <div class="hours">
+    <table>
+      <tr><td>Monday</td><td>8:00 AM – 7:00 PM</td></tr>
+      <tr><td>Tuesday</td><td>8:00 AM – 7:00 PM</td></tr>
+      <tr><td>Wednesday</td><td>8:00 AM – 7:00 PM</td></tr>
+      <tr><td>Thursday</td><td>8:00 AM – 7:00 PM</td></tr>
+      <tr><td>Friday</td><td>8:00 AM – 7:00 PM</td></tr>
+      <tr><td>Saturday</td><td>9:00 AM – 6:00 PM</td></tr>
+      <tr><td>Sunday</td><td>12:00 PM – 5:00 PM</td></tr>
+    </table>
+    <p style="margin:12px 0 0;color:#555;font-size:12px;">Note: Hours can change on holidays. Please call/WhatsApp to confirm.</p>
+  </div>
 </section>
 
 <section>
-<h2>Working Hours</h2>
-<div class="hours">
-<table>
-<tr><td>Monday</td><td>8:00 AM – 7:00 PM</td></tr>
-<tr><td>Tuesday</td><td>8:00 AM – 7:00 PM</td></tr>
-<tr><td>Wednesday</td><td>8:00 AM – 7:00 PM</td></tr>
-<tr><td>Thursday</td><td>8:00 AM – 7:00 PM</td></tr>
-<tr><td>Friday</td><td>8:00 AM – 7:00 PM</td></tr>
-<tr><td>Saturday</td><td>9:00 AM – 6:00 PM</td></tr>
-<tr><td>Sunday</td><td>12:00 PM – 5:00 PM</td></tr>
-</table>
-<p style="margin:12px 0 0;color:#555;font-size:12px;">Note: Hours can change on holidays. Please call/WhatsApp to confirm.</p>
-</div>
+  <h2>Book a Repair / Get a Quote</h2>
+
+  <div class="form-wrap">
+    <div class="form-row">
+      <div>
+        <label for="custName">Your Name</label>
+        <input id="custName" type="text" placeholder="e.g., Kwame Mensah" required>
+      </div>
+      <div>
+        <label for="custPhone">Your Phone Number</label>
+        <input id="custPhone" type="tel" placeholder="e.g., 0551234567" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label for="device">Phone Model</label>
+        <input id="device" type="text" placeholder="e.g., iPhone 11, Tecno Spark 10, Samsung A12" required>
+      </div>
+      <div>
+        <label for="serviceType">Service Needed</label>
+        <select id="serviceType">
+          <option value="Screen Replacement">Screen Replacement</option>
+          <option value="Battery Replacement">Battery Replacement</option>
+          <option value="Charging Repair">Charging Repair</option>
+          <option value="Water Damage Repair">Water Damage Repair</option>
+          <option value="Motherboard Repair">Motherboard Repair</option>
+          <option value="Motherboard Purchase">Motherboard Purchase</option>
+          <option value="Accessories Purchase">Accessories Purchase</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="problem">Describe the Problem / What You Need</label>
+    <textarea id="problem" placeholder="e.g., Screen is cracked, phone not charging, boot loop, etc." required></textarea>
+
+    <div class="form-row">
+      <div>
+        <label for="date">Preferred Date</label>
+        <input id="date" type="date">
+      </div>
+      <div>
+        <label for="time">Preferred Time</label>
+        <input id="time" type="time">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn whatsapp-btn" onclick="sendWhatsApp()">Send on WhatsApp</button>
+      <button class="btn email-btn" onclick="sendEmail()">Send by Email</button>
+    </div>
+
+    <div class="form-note">Tip: “Send on WhatsApp” is fastest. Your message will be created automatically.</div>
+  </div>
 </section>
 
 <section>
-<h2>Book a Repair / Get a Quote</h2>
-
-<div class="form-wrap">
-<div class="form-row">
-<div>
-<label for="custName">Your Name</label>
-<input id="custName" type="text" placeholder="e.g., Kwame Mensah" required>
-</div>
-<div>
-<label for="custPhone">Your Phone Number</label>
-<input id="custPhone" type="tel" placeholder="e.g., 0551234567" required>
-</div>
-</div>
-
-<div class="form-row">
-<div>
-<label for="device">Phone Model</label>
-<input id="device" type="text" placeholder="e.g., iPhone 11, Tecno Spark 10, Samsung A12" required>
-</div>
-<div>
-<label for="serviceType">Service Needed</label>
-<select id="serviceType">
-<option value="Screen Replacement">Screen Replacement</option>
-<option value="Battery Replacement">Battery Replacement</option>
-<option value="Charging Repair">Charging Repair</option>
-<option value="Water Damage Repair">Water Damage Repair</option>
-<option value="Motherboard Repair">Motherboard Repair</option>
-<option value="Motherboard Purchase">Motherboard Purchase</option>
-<option value="Accessories Purchase">Accessories Purchase</option>
-<option value="Other">Other</option>
-</select>
-</div>
-</div>
-
-<label for="problem">Describe the Problem / What You Need</label>
-<textarea id="problem" placeholder="e.g., Screen is cracked, phone not charging, boot loop, etc." required></textarea>
-
-<div class="form-row">
-<div>
-<label for="date">Preferred Date</label>
-<input id="date" type="date">
-</div>
-<div>
-<label for="time">Preferred Time</label>
-<input id="time" type="time">
-</div>
-</div>
-
-<div class="form-actions">
-<button class="btn whatsapp-btn" onclick="sendWhatsApp()">Send on WhatsApp</button>
-<button class="btn" style="background:#0077ff;" onclick="sendEmail()">Send by Email</button>
-</div>
-
-<div class="form-note">
-Tip: “Send on WhatsApp” is fastest. Your message will be created automatically.
-</div>
-</div>
+  <h2>Customer Reviews</h2>
+  <div class="review-section">
+    <div class="review-card"><strong>Kwame A.</strong><p>My phone screen was replaced perfectly and fast!</p></div>
+    <div class="review-card"><strong>Abena T.</strong><p>Great service and affordable prices.</p></div>
+    <div class="review-card"><strong>Kojo S.</strong><p>Fast battery replacement and good service.</p></div>
+    <div class="review-card"><strong>Akosua M.</strong><p>Good accessories and expert advice.</p></div>
+  </div>
 </section>
 
 <section>
-<h2>Customer Reviews</h2>
-<div class="review-section">
-<div class="review-card">
-<strong>Kwame A.</strong>
-<p>My phone screen was replaced perfectly and fast!</p>
-</div>
-<div class="review-card">
-<strong>Abena T.</strong>
-<p>Great service and affordable prices.</p>
-</div>
-<div class="review-card">
-<strong>Kojo S.</strong>
-<p>Fast battery replacement and good service.</p>
-</div>
-<div class="review-card">
-<strong>Akosua M.</strong>
-<p>Good accessories and expert advice.</p>
-</div>
-</div>
+  <h2>Contact Us</h2>
+  <p>Email: <a href="mailto:engineerjoromi@gmail.com">engineerjoromi@gmail.com</a></p>
+  <p>Call / WhatsApp: +233505383846</p>
+  <p>Momo Payment: +233595765642</p>
+
+  <a class="btn call-btn" href="tel:+233505383846">📞 Call Now</a>
+  <a href="https://wa.me/233505383846" class="btn whatsapp-btn">Chat on WhatsApp</a>
+  <a href="tel:+233595765642" class="btn momo-btn">Pay with Momo</a>
+
+  <p>Visit us: Anaji Road, Opposite Mobik Filling Station, Takoradi</p>
 </section>
 
 <section>
-<h2>Contact Us</h2>
-<p>Email: <a href="mailto:engineerjoromi@gmail.com">engineerjoromi@gmail.com</a></p>
-<p>Call / WhatsApp: +233505383846</p>
-<p>Momo Payment: +233595765642</p>
-
-<a class="btn call-btn" href="tel:+233505383846">📞 Call Now</a>
-<a href="https://wa.me/233505383846" class="btn whatsapp-btn">Chat on WhatsApp</a>
-<a href="tel:+233595765642" class="btn momo-btn">Pay with Momo</a>
-
-<p>Visit us: Anaji Road, Opposite Mobik Filling Station, Takoradi</p>
-</section>
-
-<section>
-<h2>Our Location</h2>
-<iframe
-src="https://maps.google.com/maps?q=Anaji%20Road%20Takoradi&t=&z=15&ie=UTF8&iwloc=&output=embed"
-width="90%" height="300" style="border:0;border-radius:10px;"></iframe>
+  <h2>Our Location</h2>
+  <iframe
+    src="https://maps.google.com/maps?q=Anaji%20Road%20Takoradi&t=&z=15&ie=UTF8&iwloc=&output=embed"
+    width="90%" height="300"></iframe>
 </section>
 
 <footer>
-© 2026 Engineer Joromi Tech
+  © 2026 Engineer Joromi Tech
 </footer>
 
+<!-- ✅ AI Button (Side) -->
+<button id="aiFab" onclick="toggleChat()" title="Chat with AI">🤖</button>
+
+<!-- ✅ AI Chat Panel -->
 <div id="chatbox">
-<div id="messages">
-<b>AI:</b> Welcome! Ask about repairs or prices.
-</div>
-<input id="userInput" placeholder="Ask something">
-<button onclick="reply()">Send</button>
+  <div id="chatHeader">
+    AI Assistant
+    <button id="closeChat" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div id="messages">
+    <b>AI:</b> Welcome to <b>Joromitechs</b> 👋<br>
+    How can I help you today? Ask about repairs, prices, accessories, or location.
+  </div>
+
+  <input id="userInput" placeholder="Ask something">
+  <button id="sendBtn" onclick="reply()">Send</button>
 </div>
 
 <script>
-// Carousel (2 images)
+/* Carousel (2 images) */
 let slideIndex=0;
 function showSlide(){
-const slide=document.getElementById("carousel-slide");
-slide.style.transform="translateX(" + (-slideIndex*100) + "%)";
+  document.getElementById("carousel-slide").style.transform="translateX(" + (-slideIndex*100) + "%)";
 }
 function nextSlide(){ slideIndex=(slideIndex+1)%2; showSlide(); }
 function prevSlide(){ slideIndex=(slideIndex-1+2)%2; showSlide(); }
 
-// Booking form helpers
+/* Toggle chat */
+function toggleChat(){
+  const box = document.getElementById("chatbox");
+  box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+}
+
+/* Booking form helpers */
 function buildBookingMessage(){
-const name = document.getElementById("custName").value.trim();
-const phone = document.getElementById("custPhone").value.trim();
-const device = document.getElementById("device").value.trim();
-const service = document.getElementById("serviceType").value;
-const problem = document.getElementById("problem").value.trim();
-const date = document.getElementById("date").value;
-const time = document.getElementById("time").value;
+  const name = document.getElementById("custName").value.trim();
+  const phone = document.getElementById("custPhone").value.trim();
+  const device = document.getElementById("device").value.trim();
+  const service = document.getElementById("serviceType").value;
+  const problem = document.getElementById("problem").value.trim();
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
 
-let when = "";
-if(date) when += date;
-if(time) when += (when ? " " : "") + time;
+  let when = "";
+  if(date) when += date;
+  if(time) when += (when ? " " : "") + time;
 
-return (
-"Hello Engineer Joromi Tech,%0A" +
-"My name is: " + encodeURIComponent(name) + "%0A" +
-"My phone number is: " + encodeURIComponent(phone) + "%0A" +
-"Phone model: " + encodeURIComponent(device) + "%0A" +
-"Service needed: " + encodeURIComponent(service) + "%0A" +
-"Problem: " + encodeURIComponent(problem) + "%0A" +
-(when ? ("Preferred time: " + encodeURIComponent(when) + "%0A") : "") +
-"Location: Anaji Road, Opposite Mobik Filling Station, Takoradi"
-);
+  return (
+    "Hello Engineer Joromi Tech,%0A" +
+    "My name is: " + encodeURIComponent(name) + "%0A" +
+    "My phone number is: " + encodeURIComponent(phone) + "%0A" +
+    "Phone model: " + encodeURIComponent(device) + "%0A" +
+    "Service needed: " + encodeURIComponent(service) + "%0A" +
+    "Problem: " + encodeURIComponent(problem) + "%0A" +
+    (when ? ("Preferred time: " + encodeURIComponent(when) + "%0A") : "") +
+    "Location: Anaji Road, Opposite Mobik Filling Station, Takoradi"
+  );
 }
-
 function validateForm(){
-const requiredIds = ["custName","custPhone","device","problem"];
-for(const id of requiredIds){
-const v = document.getElementById(id).value.trim();
-if(!v){
-alert("Please fill: " + id);
-return false;
+  const requiredIds = ["custName","custPhone","device","problem"];
+  for(const id of requiredIds){
+    if(!document.getElementById(id).value.trim()){
+      alert("Please fill: " + id);
+      return false;
+    }
+  }
+  return true;
 }
-}
-return true;
-}
-
 function sendWhatsApp(){
-if(!validateForm()) return;
-const msg = buildBookingMessage();
-window.open("https://wa.me/233505383846?text=" + msg, "_blank");
+  if(!validateForm()) return;
+  window.open("https://wa.me/233505383846?text=" + buildBookingMessage(), "_blank");
 }
-
 function sendEmail(){
-if(!validateForm()) return;
-const name = document.getElementById("custName").value.trim();
-const subject = encodeURIComponent("Repair Booking / Quote Request - " + name);
-const body = decodeURIComponent(buildBookingMessage());
-window.location.href = "mailto:engineerjoromi@gmail.com?subject=" + subject + "&body=" + encodeURIComponent(body);
+  if(!validateForm()) return;
+  const name = document.getElementById("custName").value.trim();
+  const subject = encodeURIComponent("Repair Booking / Quote Request - " + name);
+  const body = decodeURIComponent(buildBookingMessage());
+  window.location.href = "mailto:engineerjoromi@gmail.com?subject=" + subject + "&body=" + encodeURIComponent(body);
 }
 
-// AI chat
+/* AI chat */
 function reply(){
-let input=document.getElementById("userInput").value.toLowerCase();
-let messages=document.getElementById("messages");
-messages.innerHTML+="<br><b>You:</b> "+input;
+  let input=document.getElementById("userInput").value.trim();
+  if(!input) return;
 
-let response="Contact us on WhatsApp.";
+  let messages=document.getElementById("messages");
+  messages.innerHTML += "<br><b>You:</b> " + input;
 
-if(input.includes("screen")) response="Screen replacement starts from 80 cedis.";
-else if(input.includes("battery")) response="Battery replacement starts from 50 cedis.";
-else if(input.includes("charging")) response="Charging repair starts from 20 cedis.";
-else if(input.includes("price") || input.includes("pricing")) response="Check the pricing section above. You can also book a repair for a quick quote.";
-else if(input.includes("momo") || input.includes("payment")) response="Momo payment number is +233595765642.";
-else if(input.includes("location")) response="We are opposite Mobik Filling Station, Anaji Road, Takoradi.";
-else if(input.includes("hours") || input.includes("open")) response="We are open Mon–Fri 8am–7pm, Sat 9am–6pm, Sun 12pm–5pm.";
+  let q=input.toLowerCase();
+  let response="Welcome to Joromitechs 👋 Please contact us on WhatsApp for quick help.";
 
-messages.innerHTML+="<br><b>AI:</b> "+response;
-document.getElementById("userInput").value="";
+  if(q.includes("screen")) response="Screen replacement starts from 80 cedis.";
+  else if(q.includes("battery")) response="Battery replacement starts from 50 cedis.";
+  else if(q.includes("charging")) response="Charging repair starts from 20 cedis.";
+  else if(q.includes("price") || q.includes("pricing")) response="Prices: Screen 80+, Battery 50+, Charging 20+. Accessories start from 10 cedis.";
+  else if(q.includes("accessories")) response="We sell phone accessories like covers, chargers, and headphones. Prices start from 10 cedis.";
+  else if(q.includes("momo") || q.includes("payment")) response="Momo payment number is +233595765642.";
+  else if(q.includes("location")) response="We are at Anaji Road, opposite Mobik Filling Station, Takoradi.";
+  else if(q.includes("hours") || q.includes("open")) response="We are open Mon–Fri 8am–7pm, Sat 9am–6pm, Sun 12pm–5pm.";
+
+  messages.innerHTML += "<br><b>AI:</b> " + response;
+  document.getElementById("userInput").value="";
+  messages.scrollTop = messages.scrollHeight;
 }
 </script>
 
 </body>
-  </html>
+</html>
