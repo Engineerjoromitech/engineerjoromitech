@@ -3,69 +3,192 @@
 <head>
 <title>Engineer Joromi Tech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
+
 body{
-font-family: Arial;
+font-family: Arial, sans-serif;
 margin:0;
-background:#f5f5f5;
+background:#f4f4f4;
 text-align:center;
 }
 
 header{
-background:#0a84ff;
+background:#0077ff;
 color:white;
-padding:40px;
+padding:60px 20px;
+}
+
+header h1{
+font-size:36px;
+margin-bottom:10px;
 }
 
 section{
-padding:30px;
+padding:40px 20px;
 }
 
-button{
+.services{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+max-width:600px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.whatsapp-btn{
 background:#25D366;
 color:white;
-border:none;
-padding:15px 25px;
+padding:15px 30px;
 font-size:18px;
-border-radius:8px;
+border:none;
+border-radius:10px;
+margin-top:15px;
 }
 
 footer{
-background:#222;
+background:#111;
 color:white;
-padding:15px;
-margin-top:30px;
+padding:20px;
+margin-top:40px;
 }
+
+/* AI Chat */
+
+#chatbox{
+position:fixed;
+bottom:20px;
+right:20px;
+width:260px;
+background:white;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+padding:10px;
+}
+
+#messages{
+height:150px;
+overflow:auto;
+font-size:14px;
+margin-bottom:10px;
+}
+
+input{
+width:70%;
+padding:6px;
+}
+
+button{
+padding:6px;
+}
+
+iframe{
+border-radius:10px;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <header>
+
 <h1>Engineer Joromi Tech</h1>
-<p>Professional Phone Repair Services</p>
+<p>Professional Phone Repair Services in Accra</p>
+
 </header>
 
+<!-- Welcome Section -->
 <section>
-<h2>Our Services</h2>
-<p>📱 Screen Replacement</p>
-<p>🔋 Battery Replacement</p>
-<p>🔧 Phone Diagnostics</p>
-<p>💧 Water Damage Repair</p>
+<h2>Welcome</h2>
+<p>
+Welcome to Engineer Joromi Tech 👋  
+We provide fast and reliable phone repair services in Accra.
+Screen replacement, battery replacement, diagnostics and more.
+</p>
 </section>
 
+<!-- Services Section -->
+<section>
+<h2>Our Services</h2>
+<div class="services">
+<div class="card">📱 Screen Replacement</div>
+<div class="card">🔋 Battery Replacement</div>
+<div class="card">🔧 Phone Diagnostics</div>
+<div class="card">💧 Water Damage Repair</div>
+<div class="card">🔌 Charging Port Repair</div>
+<div class="card">📶 Network Issues Fix</div>
+</div>
+</section>
+
+<!-- Contact Section -->
 <section>
 <h2>Contact Us</h2>
 <p>Call or WhatsApp: +233505383846</p>
-
 <a href="https://wa.me/233505383846">
-<button>Chat on WhatsApp</button>
+<button class="whatsapp-btn">Chat on WhatsApp</button>
 </a>
 </section>
 
+<!-- Shop Location Section -->
+<section>
+<h2>Our Shop Location</h2>
+<p>
+Visit Engineer Joromi Tech at  
+Anaji Road, Opposite Mobic Filling Station, Takoradi
+</p>
+<iframe
+src="https://maps.google.com/maps?q=Anaji%20Road%20Takoradi&t=&z=15&ie=UTF8&iwloc=&output=embed"
+width="90%"
+height="300"
+style="border:0;">
+</iframe>
+</section>
+
 <footer>
-<p>© 2026 Engineer Joromi Tech</p>
+<p>© 2026 Engineer Joromi Tech | Phone Repair Specialist</p>
 </footer>
+
+<!-- AI Chat Assistant -->
+<div id="chatbox">
+<div id="messages">
+<b>AI Assistant:</b> Hello 👋 Welcome to Engineer Joromi Tech.  
+Ask me about phone repairs.
+</div>
+<input id="userInput" placeholder="Ask something...">
+<button onclick="reply()">Send</button>
+</div>
+
+<script>
+function reply(){
+var input=document.getElementById("userInput").value;
+var messages=document.getElementById("messages");
+messages.innerHTML += "<br><b>You:</b> "+input;
+var response="";
+if(input.toLowerCase().includes("screen")){
+response="We repair phone screens. Contact us on WhatsApp for price.";
+}
+else if(input.toLowerCase().includes("battery")){
+response="Yes we replace phone batteries quickly.";
+}
+else if(input.toLowerCase().includes("location")){
+response="We are located at Anaji Road, Opposite Mobic Filling Station, Takoradi.";
+}
+else{
+response="Please contact us on WhatsApp for more help.";
+}
+messages.innerHTML += "<br><b>AI:</b> "+response;
+document.getElementById("userInput").value="";
+}
+</script>
 
 </body>
 </html>
