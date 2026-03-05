@@ -13,7 +13,8 @@ text-align:center;
 }
 
 header{
-background: url('https://images.unsplash.com/photo-1587202372775-989a8d4c1f5e?auto=format&fit=crop&w=1400&q=60') no-repeat center center;
+/* FIXED: reliable image (Wikimedia Commons) */
+background: url('https://commons.wikimedia.org/wiki/Special:FilePath/Phone%20Repair.jpg?width=1600') no-repeat center center;
 background-size: cover;
 color:white;
 padding:80px 20px;
@@ -100,6 +101,7 @@ overflow:hidden;
 position:relative;
 border-radius:10px;
 box-shadow:0 4px 10px rgba(0,0,0,0.1);
+background:#fff;
 }
 
 .carousel-slide{
@@ -110,6 +112,7 @@ transition:transform 0.5s ease;
 .carousel-slide img{
 width:100%;
 border-radius:10px;
+display:block;
 }
 
 .prev,.next{
@@ -233,7 +236,6 @@ padding:6px;
 <h1>Engineer Joromi Tech</h1>
 <p>Professional Phone Repair & Accessories in Takoradi</p>
 
-<!-- NEW: Call Now Button (Top) -->
 <a class="btn call-btn" href="tel:+233505383846">📞 Call Now</a>
 </header>
 
@@ -272,17 +274,23 @@ padding:6px;
 
 <section>
 <h2>Before & After Repairs</h2>
+
 <div class="carousel-container">
 <div class="carousel-slide" id="carousel-slide">
-<img src="https://images.unsplash.com/photo-1587202372775-989a8d4c1f5e?auto=format&fit=crop&w=1400&q=60" alt="Broken Phone">
-<img src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa?auto=format&fit=crop&w=1400&q=60" alt="Phone Repair">
+<!-- FIXED: reliable Wikimedia Commons images -->
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Smartphone%20cracked%20screen.jpg?width=1400" alt="Before Repair (Cracked Screen)">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Phone%20Repair.jpg?width=1400" alt="After Repair (Phone Repair)">
 </div>
+
 <button class="prev" onclick="prevSlide()">❮</button>
 <button class="next" onclick="nextSlide()">❯</button>
 </div>
+
+<p style="max-width:700px;margin:12px auto 0;color:#555;font-size:12px;">
+Note: These are sample images for now. When your upload limit resets, we’ll replace them with your real before/after photos.
+</p>
 </section>
 
-<!-- NEW: Working Hours Section -->
 <section>
 <h2>Working Hours</h2>
 <div class="hours">
@@ -299,7 +307,6 @@ padding:6px;
 </div>
 </section>
 
-<!-- Booking / Quote Form -->
 <section>
 <h2>Book a Repair / Get a Quote</h2>
 
@@ -388,11 +395,10 @@ Tip: “Send on WhatsApp” is fastest. Your message will be created automatical
 <p>Call / WhatsApp: +233505383846</p>
 <p>Momo Payment: +233595765642</p>
 
-<!-- NEW: Call Now Button (Contact) -->
 <a class="btn call-btn" href="tel:+233505383846">📞 Call Now</a>
-
 <a href="https://wa.me/233505383846" class="btn whatsapp-btn">Chat on WhatsApp</a>
 <a href="tel:+233595765642" class="btn momo-btn">Pay with Momo</a>
+
 <p>Visit us: Anaji Road, Opposite Mobik Filling Station, Takoradi</p>
 </section>
 
@@ -416,20 +422,14 @@ width="90%" height="300" style="border:0;border-radius:10px;"></iframe>
 </div>
 
 <script>
-// Carousel
+// Carousel (2 images)
 let slideIndex=0;
 function showSlide(){
 const slide=document.getElementById("carousel-slide");
 slide.style.transform="translateX(" + (-slideIndex*100) + "%)";
 }
-function nextSlide(){
-slideIndex=(slideIndex+1)%2;
-showSlide();
-}
-function prevSlide(){
-slideIndex=(slideIndex-1+2)%2;
-showSlide();
-}
+function nextSlide(){ slideIndex=(slideIndex+1)%2; showSlide(); }
+function prevSlide(){ slideIndex=(slideIndex-1+2)%2; showSlide(); }
 
 // Booking form helpers
 function buildBookingMessage(){
@@ -497,7 +497,7 @@ else if(input.includes("charging")) response="Charging repair starts from 20 ced
 else if(input.includes("price") || input.includes("pricing")) response="Check the pricing section above. You can also book a repair for a quick quote.";
 else if(input.includes("momo") || input.includes("payment")) response="Momo payment number is +233595765642.";
 else if(input.includes("location")) response="We are opposite Mobik Filling Station, Anaji Road, Takoradi.";
-else if(input.includes("hours") || input.includes("open")) response="We are open Mon-Fri 8am-7pm, Sat 9am-6pm, Sun 12pm-5pm.";
+else if(input.includes("hours") || input.includes("open")) response="We are open Mon–Fri 8am–7pm, Sat 9am–6pm, Sun 12pm–5pm.";
 
 messages.innerHTML+="<br><b>AI:</b> "+response;
 document.getElementById("userInput").value="";
@@ -505,4 +505,4 @@ document.getElementById("userInput").value="";
 </script>
 
 </body>
-</html>
+  </html>
