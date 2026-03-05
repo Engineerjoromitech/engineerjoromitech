@@ -5,105 +5,100 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-
+/* General Styles */
 body{
 font-family: Arial, sans-serif;
 margin:0;
 background:#f4f4f4;
 text-align:center;
 }
-
 header{
-background:#0077ff;
+background: url('https://i.ibb.co/f9Z2x8V/phone-repair-before-after.jpg') no-repeat center center;
+background-size: cover;
 color:white;
-padding:60px 20px;
+padding:80px 20px;
+text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
+header h1{font-size:36px;margin-bottom:10px;}
+section{padding:40px 20px;}
+.services{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:600px;margin:auto;}
+.card{background:white;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.pricing-table{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:700px;margin:auto;margin-top:20px;}
+.pricing-card{background:white;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);text-align:left;}
+.pricing-card h3{margin-top:0;color:#0077ff;}
+.contact-info{background:white;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-bottom:20px;}
+.review-section{max-width:700px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:20px;}
+.review-card{background:white;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);font-size:14px;text-align:left;}
+.whatsapp-btn, .momo-btn{background:#25D366;color:white;padding:15px 30px;font-size:18px;border:none;border-radius:10px;margin-top:15px;text-decoration:none;display:inline-block;}
+.momo-btn{background:#ff8c00;}
+footer{background:#111;color:white;padding:20px;margin-top:40px;}
+iframe{border-radius:10px;}
 
-header h1{
-font-size:36px;
-margin-bottom:10px;
-}
+/* AI Chat */
+#chatbox{position:fixed;bottom:20px;right:20px;width:260px;background:white;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.3);padding:10px;}
+#messages{height:150px;overflow:auto;font-size:14px;margin-bottom:10px;}
+input{width:70%;padding:6px;}
+button{padding:6px;}
 
-section{
-padding:40px 20px;
-}
-
-.services{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-max-width:600px;
+/* Carousel Styles */
+.carousel-container{
+max-width:700px;
 margin:auto;
-}
-
-.card{
-background:white;
-padding:20px;
+position:relative;
+overflow:hidden;
 border-radius:10px;
 box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
-
-.whatsapp-btn{
-background:#25D366;
-color:white;
-padding:15px 30px;
-font-size:18px;
-border:none;
-border-radius:10px;
-margin-top:15px;
+.carousel-slide{
+display:flex;
+transition:transform 0.5s ease-in-out;
 }
-
-footer{
-background:#111;
-color:white;
-padding:20px;
-margin-top:40px;
-}
-
-/* AI Chat */
-
-#chatbox{
-position:fixed;
-bottom:20px;
-right:20px;
-width:260px;
-background:white;
+.carousel-slide img{
+width:100%;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+.prev, .next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,0.5);
+color:white;
 padding:10px;
+border:none;
+border-radius:50%;
+cursor:pointer;
+font-size:18px;
 }
-
-#messages{
-height:150px;
-overflow:auto;
-font-size:14px;
-margin-bottom:10px;
+.prev{left:10px;}
+.next{right:10px;}
+.dots{
+text-align:center;
+margin-top:10px;
 }
-
-input{
-width:70%;
-padding:6px;
+.dot{
+display:inline-block;
+height:10px;
+width:10px;
+margin:0 5px;
+background:#bbb;
+border-radius:50%;
+cursor:pointer;
 }
-
-button{
-padding:6px;
+.active-dot{background:#0077ff;}
+/* Responsive */
+@media screen and (max-width:768px){
+.services{grid-template-columns:1fr;}
+.review-section{grid-template-columns:1fr;}
+.pricing-table{grid-template-columns:1fr;}
 }
-
-iframe{
-border-radius:10px;
-}
-
 </style>
-
 </head>
 
 <body>
 
 <header>
-
 <h1>Engineer Joromi Tech</h1>
-<p>Professional Phone Repair Services in Accra</p>
-
+<p>Professional Phone Repair & Accessories in Takoradi</p>
 </header>
 
 <!-- Welcome Section -->
@@ -111,8 +106,7 @@ border-radius:10px;
 <h2>Welcome</h2>
 <p>
 Welcome to Engineer Joromi Tech 👋  
-We provide fast and reliable phone repair services in Accra.
-Screen replacement, battery replacement, diagnostics and more.
+We provide fast and reliable phone repair services, motherboard repair, phone accessories, and more in Takoradi.
 </p>
 </section>
 
@@ -126,16 +120,82 @@ Screen replacement, battery replacement, diagnostics and more.
 <div class="card">💧 Water Damage Repair</div>
 <div class="card">🔌 Charging Port Repair</div>
 <div class="card">📶 Network Issues Fix</div>
+<div class="card">💻 Motherboard Sales & Repair</div>
+<div class="card">🎧 Phone Accessories (Covers, Chargers, Headphones)</div>
+</div>
+</section>
+
+<!-- Pricing Section -->
+<section>
+<h2>Our Pricing</h2>
+<div class="pricing-table">
+<div class="pricing-card">
+<h3>Phone Repairs</h3>
+<p>Screen Replacement: GHS 80 and above</p>
+<p>Battery Replacement: GHS 50 and above</p>
+<p>Charging Port Repair: GHS 20 and above</p>
+<p>Water Damage Repair: GHS 100 - 300</p>
+<p>Network Fix: GHS 80 - 200</p>
+</div>
+<div class="pricing-card">
+<h3>Motherboards & Accessories</h3>
+<p>Motherboard Sales & Repair: GHS 250 - 800</p>
+<p>Phone Accessories: GHS 10 - 150 (Covers, Chargers, Headphones)</p>
+</div>
+</div>
+</section>
+
+<!-- Before & After Carousel Section -->
+<section>
+<h2>Before & After Repairs</h2>
+<div class="carousel-container">
+<div class="carousel-slide" id="carousel-slide">
+<img src="https://i.ibb.co/5B2G1cV/before-repair.jpg" alt="Before Repair">
+<img src="https://i.ibb.co/JpXwXvD/after-repair.jpg" alt="After Repair">
+</div>
+<button class="prev" onclick="prevSlide()">&#10094;</button>
+<button class="next" onclick="nextSlide()">&#10095;</button>
+</div>
+<div class="dots">
+<span class="dot active-dot" onclick="currentSlide(0)"></span>
+<span class="dot" onclick="currentSlide(1)"></span>
+</div>
+</section>
+
+<!-- Reviews Section -->
+<section>
+<h2>Customer Reviews</h2>
+<div class="review-section">
+<div class="review-card">
+<p><strong>Kwame A.</strong></p>
+<p>“My phone screen was replaced perfectly and fast. Highly recommend Engineer Joromi Tech!”</p>
+</div>
+<div class="review-card">
+<p><strong>Abena T.</strong></p>
+<p>“I bought a motherboard replacement here. Excellent service and affordable prices.”</p>
+</div>
+<div class="review-card">
+<p><strong>Kojo S.</strong></p>
+<p>“Quick repair of my battery and charging port. Friendly and professional staff.”</p>
+</div>
+<div class="review-card">
+<p><strong>Akosua M.</strong></p>
+<p>“Bought phone accessories and got expert advice. Great experience!”</p>
+</div>
 </div>
 </section>
 
 <!-- Contact Section -->
 <section>
 <h2>Contact Us</h2>
+<div class="contact-info">
+<p>Email: <a href="mailto:engineerjoromi@gmail.com">engineerjoromi@gmail.com</a></p>
 <p>Call or WhatsApp: +233505383846</p>
-<a href="https://wa.me/233505383846">
-<button class="whatsapp-btn">Chat on WhatsApp</button>
-</a>
+<p>Payment Momo Number: +233595765642</p>
+<a href="https://wa.me/233505383846" class="whatsapp-btn">Chat on WhatsApp</a>
+<a href="tel:+233595765642" class="momo-btn">Pay via Momo</a>
+<p>Visit our shop: Anaji Road, Opposite Mobik Filling Station, Takoradi</p>
+</div>
 </section>
 
 <!-- Shop Location Section -->
@@ -143,7 +203,7 @@ Screen replacement, battery replacement, diagnostics and more.
 <h2>Our Shop Location</h2>
 <p>
 Visit Engineer Joromi Tech at  
-Anaji Road, Opposite Mobic Filling Station, Takoradi
+Anaji Road, Opposite Mobik Filling Station, Takoradi
 </p>
 <iframe
 src="https://maps.google.com/maps?q=Anaji%20Road%20Takoradi&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -154,37 +214,54 @@ style="border:0;">
 </section>
 
 <footer>
-<p>© 2026 Engineer Joromi Tech | Phone Repair Specialist</p>
+<p>© 2026 Engineer Joromi Tech | Phone Repair, Motherboards & Accessories</p>
 </footer>
 
 <!-- AI Chat Assistant -->
 <div id="chatbox">
 <div id="messages">
 <b>AI Assistant:</b> Hello 👋 Welcome to Engineer Joromi Tech.  
-Ask me about phone repairs.
+Ask me about phone repairs, motherboards, accessories, pricing, or payments.
 </div>
 <input id="userInput" placeholder="Ask something...">
 <button onclick="reply()">Send</button>
 </div>
 
+<!-- Scripts -->
 <script>
+// Carousel Script
+let slideIndex = 0;
+const slides = document.querySelectorAll('#carousel-slide img');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index){
+if(index >= slides.length){slideIndex=0;}
+else if(index < 0){slideIndex=slides.length-1;}
+else{slideIndex=index;}
+const offset = -slideIndex * 100;
+document.getElementById('carousel-slide').style.transform = 'translateX('+offset+'%)';
+dots.forEach((dot,i)=>{dot.classList.toggle('active-dot', i===slideIndex);});
+}
+
+function nextSlide(){showSlide(slideIndex+1);}
+function prevSlide(){showSlide(slideIndex-1);}
+function currentSlide(n){showSlide(n);}
+showSlide(slideIndex);
+
+// AI Chat Script
 function reply(){
 var input=document.getElementById("userInput").value;
 var messages=document.getElementById("messages");
 messages.innerHTML += "<br><b>You:</b> "+input;
 var response="";
-if(input.toLowerCase().includes("screen")){
-response="We repair phone screens. Contact us on WhatsApp for price.";
-}
-else if(input.toLowerCase().includes("battery")){
-response="Yes we replace phone batteries quickly.";
-}
-else if(input.toLowerCase().includes("location")){
-response="We are located at Anaji Road, Opposite Mobic Filling Station, Takoradi.";
-}
-else{
-response="Please contact us on WhatsApp for more help.";
-}
+if(input.toLowerCase().includes("screen")){response="We repair phone screens. Contact us on WhatsApp for price.";}
+else if(input.toLowerCase().includes("battery")){response="Yes we replace phone batteries quickly.";}
+else if(input.toLowerCase().includes("motherboard")){response="We sell and repair motherboards. Contact us on WhatsApp for details.";}
+else if(input.toLowerCase().includes("accessories")){response="We sell phone accessories like covers, chargers, and headphones. Contact us on WhatsApp.";}
+else if(input.toLowerCase().includes("payment") || input.toLowerCase().includes("momo")){response="You can make payments via Momo at +233595765642.";}
+else if(input.toLowerCase().includes("pricing") || input.toLowerCase().includes("price")){response="Check our pricing table above for services and accessories.";}
+else if(input.toLowerCase().includes("location")){response="We are located at Anaji Road, Opposite Mobik Filling Station, Takoradi.";}
+else{response="Please contact us on WhatsApp or via Momo for more help.";}
 messages.innerHTML += "<br><b>AI:</b> "+response;
 document.getElementById("userInput").value="";
 }
